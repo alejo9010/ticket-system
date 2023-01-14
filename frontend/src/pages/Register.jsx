@@ -28,8 +28,7 @@ function Register() {
     if (isSuccess || user) {
       navigate('/');
     }
-
-    dispatch(reset);
+    dispatch(reset());
   }, [isError, isSuccess, user, message, navigate, dispatch]);
 
   const onChange = (e) => {
@@ -58,7 +57,7 @@ function Register() {
       <section className="heading">
         <h1>
           <FaUser />
-          Register {user}
+          Register
         </h1>
         <p>Please create an account</p>
       </section>

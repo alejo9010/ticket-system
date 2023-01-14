@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import authService from './authService';
-
 const initialState = {
   user: null,
   isError: false,
@@ -62,6 +61,5 @@ export const authSlice = createSlice({
       });
   },
 });
-
 export const { reset } = authSlice.actions;
 export default authSlice.reducer;
