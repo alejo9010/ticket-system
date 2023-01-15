@@ -1,7 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 import authService from './authService';
+
+//Get user from localstorage
+const user = JSON.parse(localStorage.getItem('user'));
+
 const initialState = {
-  user: null,
+  user: user ? user : null,
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -21,7 +26,7 @@ export const register = createAsyncThunk(
           error.response.data.message) ||
         error.message ||
         error.toString();
-
+      toast.error(message);
       return thunkAPI.rejectWithValue(message);
     }
   }
@@ -30,6 +35,11 @@ export const register = createAsyncThunk(
 //Login user
 export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
   console.log(user);
+});
+
+//Logout user
+export const logout = createAsyncThunk('auth/logout', async () => {
+  await authService.logout();
 });
 
 export const authSlice = createSlice({
@@ -58,6 +68,9 @@ export const authSlice = createSlice({
         state.error = true;
         state.user = null;
         state.message = action.payload;
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.user = null;
       });
   },
 });
