@@ -62,7 +62,7 @@ const loginUser = asyncHandler(async (req, res) => {
       token: generateToken(user._id),
     });
   } else {
-    res.status(401);
+    res.status(400);
     throw new Error('Invalid credentials');
   }
 });
