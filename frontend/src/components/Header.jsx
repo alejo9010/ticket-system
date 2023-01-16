@@ -12,7 +12,6 @@ function Header() {
     dispatch(reset());
     navigate('/');
   };
-  console.log(user);
   return (
     <header className="header">
       <div className="logo">
