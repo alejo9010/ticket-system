@@ -24,12 +24,10 @@ function NewTicket() {
     if (isError) {
       toast.error(message);
     }
-
     if (isSuccess) {
       dispatch(reset());
       navigate('/tickets');
     }
-
     dispatch(reset());
   }, [dispatch, isError, isSuccess, navigate, message]);
 
